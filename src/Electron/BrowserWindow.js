@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 exports.newBrowserWindow = function(options) {
   // require('electron') on demand so test suites can still run under node
-  const BrowserWindow = require('electron').BrowserWindow;
+  const BrowserWindow = require("electron").BrowserWindow;
 
   return function() {
     return new BrowserWindow(options);
@@ -38,7 +38,7 @@ exports.show = function(browserWindow) {
 exports.onClose = function(browserWindow) {
   return function(callback) {
     return function() {
-      browserWindow.on('close', function() {
+      browserWindow.on("close", function() {
         callback();
       });
     };
@@ -48,7 +48,7 @@ exports.onClose = function(browserWindow) {
 exports.onClosed = function(browserWindow) {
   return function(callback) {
     return function() {
-      browserWindow.on('closed', function() {
+      browserWindow.on("closed", function() {
         callback();
       });
     };
@@ -58,7 +58,7 @@ exports.onClosed = function(browserWindow) {
 exports.onceReadyToShow = function(browserWindow) {
   return function(callback) {
     return function() {
-      browserWindow.once('ready-to-show', function() {
+      browserWindow.once("ready-to-show", function() {
         callback();
       });
     };
@@ -74,27 +74,27 @@ exports.webContents = function(browserWindow) {
 exports.onDidFinishLoad = function(webContent) {
   return function(callback) {
     return function() {
-      webContent.on('did-finish-load', function() {
+      webContent.on("did-finish-load", function() {
         callback();
       });
     };
   };
 };
 
-exports.onDidGetRedirectRequest = function(webContents) {
-  return function(callback) {
-    return function() {
-      webContents.on('did-get-redirect-request', function(e, oldURL, newURL, isMainFrame, httpResponseCode, requestMethod, referrer, headers) {
-        callback(e)(oldURL)(newURL)(isMainFrame)(httpResponseCode)(requestMethod)(referrer)(headers)();
-      });
-    };
-  };
-};
+// exports.onDidGetRedirectRequest = function(webContents) {
+//   return function(callback) {
+//     return function() {
+//       webContents.on('did-get-redirect-request', function(e, oldURL, newURL, isMainFrame, httpResponseCode, requestMethod, referrer, headers) {
+//         callback(e)(oldURL)(newURL)(isMainFrame)(httpResponseCode)(requestMethod)(referrer)(headers)();
+//       });
+//     };
+//   };
+// };
 
 exports.onDidNavigate = function(webContents) {
   return function(callback) {
     return function() {
-      webContents.on('did-navigate', function(e, url) {
+      webContents.on("did-navigate", function(e, url) {
         callback(e)(url)();
       });
     };
@@ -104,7 +104,7 @@ exports.onDidNavigate = function(webContents) {
 exports.onDidNavigateInPage = function(webContents) {
   return function(callback) {
     return function() {
-      webContents.on('did-navigate-in-page', function(e, url) {
+      webContents.on("did-navigate-in-page", function(e, url) {
         callback(e)(url)();
       });
     };
@@ -114,7 +114,7 @@ exports.onDidNavigateInPage = function(webContents) {
 exports.onDomReady = function(webContents) {
   return function(callback) {
     return function() {
-      webContents.on('dom-ready', function(e) {
+      webContents.on("dom-ready", function(e) {
         callback(e)();
       });
     };
@@ -124,7 +124,7 @@ exports.onDomReady = function(webContents) {
 exports.onNewWindow = function(webContents) {
   return function(callback) {
     return function() {
-      webContents.on('new-window', function(e, url) {
+      webContents.on("new-window", function(e, url) {
         callback(e)(url)();
       });
     };
@@ -134,20 +134,20 @@ exports.onNewWindow = function(webContents) {
 exports.onWillNavigate = function(webContents) {
   return function(callback) {
     return function() {
-      webContents.on('will-navigate', function(e, url) {
+      webContents.on("will-navigate", function(e, url) {
         callback(e)(url)();
       });
     };
   };
 };
 
-exports.openDevToolsImpl = function(webContents) {
-  return function(options) {
-    return function() {
-      webContents.openDevTools(options);
-    };
-  };
-};
+// exports.openDevToolsImpl = function(webContents) {
+//   return function(options) {
+//     return function() {
+//       webContents.openDevTools(options);
+//     };
+//   };
+// };
 
 exports.send = function(webContents) {
   return function(channel) {

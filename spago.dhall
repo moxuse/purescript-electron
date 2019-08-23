@@ -5,7 +5,14 @@ You can edit this file as you like.
 { name =
     "electron"
 , dependencies =
-    [ "console", "effect", "psci-support" ]
+    [ "argonaut-core"
+    , "console"
+    , "effect"
+    , "foreign-object"
+    , "generics-rep"
+    , "ordered-collections"
+    , "psci-support"
+    ]
 , packages =
     ./packages.dhall
 , sources =
